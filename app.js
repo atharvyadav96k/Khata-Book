@@ -33,7 +33,7 @@ app.get('/note/view/:fileName', function (req, res){
                 if(err){
                     res.send(err)
                 }else{
-                    res.send(data)
+                    res.send(`<h1>${data}</h1>`)
                 }
             })
         }

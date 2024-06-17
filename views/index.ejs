@@ -24,7 +24,9 @@
             </div>
         </div>
         <div class="khata-container">
-            <%= files %>
+            <% files.forEach((file)=>{ %>
+                <a href="/note/view/<%= file %>"><%= file %></a>
+            <% }) %>
         </div>
     </div>
     
