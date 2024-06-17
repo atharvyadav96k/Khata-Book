@@ -45,10 +45,12 @@
 .khata-container{
     margin-top: 10px;
     width: 100%;
-    height: calc(100vh - 200px);
+    height: calc(100vh - 120px);
     padding: 7px;
     border-radius: 7px;
     background-color: var(--lightBrown);
+    display: flex;
+    flex-wrap:wrap;
 }
 .alert-box{
     width: 100%;
@@ -57,4 +59,36 @@
     border-radius: 20px;
     background-color: var(--lightBrown);
     padding: 10px;
+}
+a{
+    text-decoration: none;
+}
+.card{
+    max-width: 300px;
+    max-height: 70px;
+    width: 100%;
+    padding: 7px;
+    margin: 7px;
+    border: 2px solid var(--brown);
+    border-radius: 7px;
+    text-decoration: none;
+    color: var(--brown);
+    background-color: #ffded3;
+    flex-grow: 1;
+}
+.card p{
+    text-decoration: none;
+}
+form{
+    width: 100%;
+    position: relative;
+}
+textarea{
+    max-width: 1200px;
+    width: 100%;
+    height: calc(100% - 60px);
+    border: 2px solid var(--brown);
+    background-color: var(--lightBrown);
+    padding: 7px;
+    border-radius: 5px;
 }

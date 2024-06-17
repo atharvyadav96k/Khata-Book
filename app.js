@@ -12,7 +12,7 @@ app.get('/', function (req, res) {
         res.render('index', { files })
     })
 });
-app.get('/new/note', function (req, res) {
+app.get('/note/new', function (req, res) {
     const date = new Date();
     const fileName = `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}.txt`;
     console.log(fileName)
@@ -20,7 +20,7 @@ app.get('/new/note', function (req, res) {
         if(err){
             res.render('newkhata')
         }else{
-            res.send("Khata already Exists")
+            res.redirect(`/note/edit/${fileName}`)
         }
     })
 })
@@ -33,7 +33,7 @@ app.get('/note/view/:fileName', function (req, res){
                 if(err){
                     res.send(err)
                 }else{
-                    res.send(`<h1>${data}</h1>`)
+                    res.render('viewKhata', {data})
                 }
             })
         }
@@ -84,7 +84,7 @@ app.post('/note/edit/:fileName', function (req, res) {
 
     })
 })
-app.post('/note/delete/:fileName', function (req, res) {
+app.get('/note/delete/:fileName', function (req, res) {
     fs.access("./files/"+req.params.fileName, (err)=>{
         if(err){
             res.send("File note exists")
