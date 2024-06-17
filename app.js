@@ -1,3 +1,4 @@
+const { log } = require('console');
 const express = require('express')
 const app = express();
 const fs = require('fs');
@@ -8,12 +9,9 @@ app.use(express.urlencoded({extended: true}))
 app.get('/', function (req, res) {
     fs.readdir('./files', (err, files) => {
         console.log(files)
+        res.render('index', {files})
     })
-    res.render('index')
 });
-app.get('/edit', function (req, res) {
-
-})
 app.get('/new/note', function (req, res) {
     res.render('newkhata')
 })
@@ -27,8 +25,7 @@ app.post('/addNote', function (req, res) {
                     res.send(err);
                 }
                 else{
-                    res.redirect('/')
-
+                    res.redirect('/');
                 }
             })
         } else {
@@ -36,8 +33,24 @@ app.post('/addNote', function (req, res) {
         }
     })
 })
-app.post('/note/edit', function (req, res) {
-
+app.get('/note/edit/:fileName', function (req, res) {
+    console.log(req.params.fileName)
+    fs.access("./files/17-5-2024.txt", (err)=>{
+        if(err) res.send("file note exists");
+        fs.readFile("./files/"+req.params.fileName, "utf-8", (err, data)=>{
+            if(err) console.log(err)
+            res.render('editKhata', {data: data, fileName: req.params.fileName})
+        })
+    })
+})
+app.post('/note/edit/:fileName', function(req, res){
+    fs.access("./files/"+req.params.fileName, (err)=>{
+        if(err) res.send("something went wrong");
+        fs.writeFile("./files/"+req.params.fileName, req.body.data, (err)=>{
+            if(err) res.send(err)
+            res.redirect('/')
+        })
+    })
 })
 app.post('/note/delete', function (req, res) {
 
