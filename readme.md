@@ -1,3 +1,8 @@
-# Colors 
-    brown : #8C6253
-    gray: #383838
+# Khata Book 
+## About this project
+    We can manage out daily khats using this project.
+    In this project we used file system to store user data
+    
+## SETUP
+    node.js 
+    express
